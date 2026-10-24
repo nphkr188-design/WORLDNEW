@@ -1,0 +1,38 @@
+body.admin-page-transition-leaving {
+    opacity: 0;
+    transition: opacity 0.18s ease-in;
+    pointer-events: none;
+}
+
+body.admin-page-transition-leaving::before {
+    position: fixed;
+    z-index: 3000;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 3px;
+    background: #b4232c;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: adminPageProgress 0.18s ease-in forwards;
+}
+
+@keyframes adminPageProgress {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.admin-page-transition-leaving {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    body.admin-page-transition-leaving::before {
+        display: none;
+        animation: none;
+    }
+}
